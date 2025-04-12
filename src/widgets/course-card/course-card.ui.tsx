@@ -1,4 +1,9 @@
-import React from 'react';
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '~shared/components/ui/card';
 import { Link } from 'react-router-dom';
 
 interface CourseCardProps {
@@ -8,28 +13,24 @@ interface CourseCardProps {
   id: number;
 }
 
-export function CourseCard({
-  title,
-  description,
-  image,
-  id,
-}: CourseCardProps) {
+export function CourseCard({ title, description, image, id }: CourseCardProps) {
   return (
-    <Link
-      to={`/courses/${id}`}
-      className="flex items-start bg-white shadow-md rounded-lg overflow-hidden w-[90%] max-h-[100px]"
-    >
-      <img
-        src={image}
-        alt="Course Thumbnail"
-        className="min-w-[100px] max-w-[100px] min-h-[100px] max-h-[100px] object-cover"
-      />
-      <div className="p-2 flex flex-col">
-        <h2 className="text-lg font-semibold text-gray-800 mb-2 leading-5">
-          {title}
-        </h2>
-        <p className="text-sm text-gray-600">{description}</p>
-      </div>
-    </Link>
+    <Card className="w-[350px] hover:bg-alto ">
+      <Link to={`/courses/${id}`}>
+        <CardHeader>
+          <CardTitle className="flex items-end gap-1">
+            <img
+              className="w-[24px] h-[24px]"
+              src={image}
+              alt={title}
+            />
+            {title}
+          </CardTitle>
+          <CardDescription className="line-clamp-2">
+            {description}
+          </CardDescription>
+        </CardHeader>
+      </Link>
+    </Card>
   );
 }

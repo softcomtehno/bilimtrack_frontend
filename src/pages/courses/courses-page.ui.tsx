@@ -30,8 +30,8 @@ export function CoursesPage() {
   
   return (
     <div className='w-[90%] mx-auto'>
-      <Title>Мои курсы</Title>
-      <div className="flex flex-col gap-5 mb-20 mx-auto">
+      <Title>Мои предметы</Title>
+      <div className="flex flex-wrap gap-5 md:gap-2 mb-20 mx-auto">
         {coursesData?.data?.map((course) => (
           <CourseCard
             key={course.slug}

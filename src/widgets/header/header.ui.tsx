@@ -5,41 +5,47 @@ import { pathKeys } from '~shared/lib/react-router';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import EmojiEventsRoundedIcon from '@mui/icons-material/EmojiEventsRounded';
+import { Button } from '~shared/components/ui/button';
 
 export function Header() {
-  
-  return (  
-    <AppBar position="static" className="bg-white shadow  flex justify-between font-medium md:px-40 px-5">
+  return (
+    <AppBar
+      position="static"
+      className="bg-white shadow  flex justify-between font-medium md:px-40 px-5"
+    >
       <Toolbar className="flex justify-between w-full">
         <Link to={pathKeys.home()} className="flex items-center gap-1">
           <SchoolIcon className="text-tundora duration-500 hover:rotate-180" />
           <Typography className="font-semibold text-[20px] text-tundora">
-            Bilim<span className="text-blue">Track</span>
+            Bilimine
           </Typography>
         </Link>
         <div className="flex gap-5">
           <div className="hidden md:flex items-center space-x-6">
+            <Button asChild>
             <Link
               to={pathKeys.ranking()}
-              className="text-dove hover:text-gray-200 font-semibold hover:text-blue flex items-center gap-1 border py-1 px-2 rounded-full text-[16px]"
             >
-              <BarChartRoundedIcon/>
+              <BarChartRoundedIcon />
               Рейтинг
             </Link>
+            </Button>
+            <Button asChild>
             <Link
               to={pathKeys.course.root()}
-              className="text-dove hover:text-gray-200 font-semibold hover:text-blue flex items-center gap-1 border py-1 px-2 rounded-full text-[16px]"
             >
-              <LibraryBooksRoundedIcon/>
-              Мои курсы
+              <LibraryBooksRoundedIcon />
+              Предметы
             </Link>
+            </Button>
+            <Button asChild>
             <Link
               to={pathKeys.profile.badges()}
-              className="text-dove hover:text-gray-200 font-semibold hover:text-blue flex items-center gap-1 border py-1 px-2 rounded-full text-[16px]"
             >
-              <EmojiEventsRoundedIcon/>
+              <EmojiEventsRoundedIcon />
               Достижения
             </Link>
+            </Button>
           </div>
           <Tooltip title="Профиль">
             <Link to={pathKeys.profile.root()}>

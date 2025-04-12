@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { rankingQueries } from '~entities/ranking';
+import { Input } from '~shared/components/ui/input';
 
 
 export function StudentsRanking({ isTopThree }: { isTopThree?: boolean }) {
@@ -36,7 +37,6 @@ export function StudentsRanking({ isTopThree }: { isTopThree?: boolean }) {
     isError,
   } = rankingQueries.useGetRankingByStudents();
 
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -46,7 +46,6 @@ export function StudentsRanking({ isTopThree }: { isTopThree?: boolean }) {
   }
   const studentRankings = transformStudentData(studentsRanking.data);
 
-  
   const filteredStudents = studentRankings.filter((student) =>
     student.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -97,13 +96,11 @@ export function StudentsRanking({ isTopThree }: { isTopThree?: boolean }) {
   return (
     <div className="flex flex-col gap-4">
       {!isTopThree && (
-        <TextField
-          label="Поиск по username"
-          variant="outlined"
+        <Input
+          type="text"
           value={searchQuery}
           onChange={handleSearch}
-          className="w-full max-w-md self-center"
-          size="small"
+          placeholder="Поиск по username"
         />
       )}
 
@@ -155,7 +152,10 @@ export function StudentsRanking({ isTopThree }: { isTopThree?: boolean }) {
                     className="flex items-center space-x-2"
                     style={{ display: 'flex', alignItems: 'center' }}
                   >
-                    <Avatar src={`https://api.bilim-track.makalabox.com/${student.photo}`} alt={student.name} />
+                    <Avatar
+                      src={`https://api.bilim-track.makalabox.com/${student.photo}`}
+                      alt={student.name}
+                    />
                     <div className="flex flex-col">
                       <p className={`${getMedalStyle(student.rank)} `}>
                         {student.name}
@@ -184,7 +184,7 @@ export function StudentsRanking({ isTopThree }: { isTopThree?: boolean }) {
           onChange={(event, value) => setPage(value - 1)}
           color="primary"
           className="flex justify-center w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] mx-auto"
-          size="medium" 
+          size="medium"
           siblingCount={1}
           boundaryCount={1}
           showFirstButton
